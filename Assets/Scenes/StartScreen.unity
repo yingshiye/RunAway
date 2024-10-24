@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 365938227}
   - component: {fileID: 365938226}
   m_Layer: 0
-  m_Name: startScreenBackground
+  m_Name: MenuBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
