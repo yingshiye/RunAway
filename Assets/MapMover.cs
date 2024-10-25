@@ -9,7 +9,7 @@ public class MapMover : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.velocity = new Vector2(-2, 0);
+        rb.velocity = new Vector2(-1, 0);
     }
 
     // Update is called once per frame
