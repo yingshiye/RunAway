@@ -27,7 +27,7 @@
                     "name": "Dash",
                     "type": "Value",
                     "id": "ba37a652-e116-488b-b8dc-62c71dc9871d",
-                    "expectedControlType": "Double",
+                    "expectedControlType": "Integer",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
