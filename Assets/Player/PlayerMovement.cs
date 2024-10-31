@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 movementVector;
     private Rigidbody2D rb;
     private bool isGrounded = true;
+    private int jumpsFromGround = 0;
     private bool isDashing = false;
     private int score = 0;
     private SpriteRenderer sr;
@@ -16,8 +17,8 @@ public class PlayerMovement : MonoBehaviour
     private Transform transform_;
 
     //[SerializeField] Animator animator;
-    [SerializeField] int speed = 0;
-    [SerializeField] int jumpForce = 400;
+    [SerializeField] int speed;
+    [SerializeField] int jumpForce;
     [SerializeField] float dashDuration = 0.1f; 
 
     private AudioClip jumpSFX;
@@ -26,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     private AudioClip landingSFX;
 
     private AudioClip collectSFX;
+    private bool dashHeld;
 
     void Start()
     {
@@ -41,15 +43,18 @@ public class PlayerMovement : MonoBehaviour
         collectSFX = Resources.Load <AudioClip> ("PlayerSFX/collect");
         landingSFX = Resources.Load <AudioClip> ("PlayerSFX/landing");
 
+        dashHeld = false;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("ground"))
+        if (collision.gameObject.CompareTag("ground") 
+        && transform_.position.y > collision.GetContact(0).point.y)
         {
             animator.SetBool("isJumping", false);
             isGrounded = true;
-            audioSource.PlayOneShot(landingSFX);
+            jumpsFromGround = 0;
+            audioSource.PlayOneShot(landingSFX, 0.5F);
         }
     }
 
@@ -65,7 +70,8 @@ public class PlayerMovement : MonoBehaviour
     {
         movementVector = value.Get<Vector2>();
 
-        if(movementVector.y > 0 && isGrounded){
+        if(movementVector.y > 0 && jumpsFromGround < 2){
+            jumpsFromGround++;
             animator.SetBool("isJumping", true);
             rb.AddForce(new Vector2(0, jumpForce));
             audioSource.PlayOneShot(jumpSFX);
@@ -82,6 +88,8 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("isDashing", true);
             audioSource.PlayOneShot(dashSFX);            
         }
+
+        dashHeld = value.Get<float>() == 1;
 
         if(animator.GetBool("isJumping") || !animator.GetBool("isWalking") ||  value.Get<float>() == 0){
             animator.SetBool("isDashing", false);
@@ -109,7 +117,11 @@ public class PlayerMovement : MonoBehaviour
         }
 
         if(movementVector.x != 0 && !animator.GetBool("isJumping")){
-            animator.SetBool("isWalking", true);            
+            animator.SetBool("isWalking", true);
+            if(dashHeld && !animator.GetBool("isDashing")){
+                animator.SetBool("isDashing", true);
+                audioSource.PlayOneShot(dashSFX); 
+            }            
             if(!audioSource.isPlaying && isGrounded && !animator.GetBool("isDashing")){
                 audioSource.PlayOneShot(moveSFX);
             }
