@@ -11,19 +11,19 @@ public class PlayerMovement : MonoBehaviour
     private bool isDashing = false;
     private int score = 0;
     private SpriteRenderer sr;
-    private AudioSource audiosource;
+    private AudioSource audioSource;
     private Animator animator;
     private Transform transform_;
 
     //[SerializeField] Animator animator;
     [SerializeField] int speed = 0;
     [SerializeField] int jumpForce = 400;
-    [SerializeField] int dashForce = 1000; 
     [SerializeField] float dashDuration = 0.1f; 
 
     private AudioClip jumpSFX;
     private AudioClip moveSFX;
     private AudioClip dashSFX;
+    private AudioClip landingSFX;
 
     private AudioClip collectSFX;
 
@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
-        audiosource = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         transform_ = GetComponent<Transform>();
 
@@ -39,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
         dashSFX = Resources.Load <AudioClip> ("PlayerSFX/dash");
         jumpSFX = Resources.Load <AudioClip> ("PlayerSFX/jump");
         collectSFX = Resources.Load <AudioClip> ("PlayerSFX/collect");
+        landingSFX = Resources.Load <AudioClip> ("PlayerSFX/landing");
 
     }
 
@@ -48,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetBool("isJumping", false);
             isGrounded = true;
+            audioSource.PlayOneShot(landingSFX);
         }
     }
 
@@ -66,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
         if(movementVector.y > 0 && isGrounded){
             animator.SetBool("isJumping", true);
             rb.AddForce(new Vector2(0, jumpForce));
-            audiosource.PlayOneShot(jumpSFX);
+            audioSource.PlayOneShot(jumpSFX);
         }
 
         if(movementVector.x * transform_.localScale.x < 0){
@@ -75,16 +77,14 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    void OnDash(InputValue value){
+        if(!animator.GetBool("isJumping") && animator.GetBool("isWalking") && !animator.GetBool("isDashing") && value.Get<float>() == 1){
+            animator.SetBool("isDashing", true);
+            audioSource.PlayOneShot(dashSFX);            
+        }
 
-    void OnDash(InputValue value)
-    {
-        if (!isDashing)
-        {
-            isDashing = true;
-
-            rb.velocity = new Vector2(movementVector.x * dashForce, rb.velocity.y);
-
-            Invoke("EndDash", dashDuration);
+        if(animator.GetBool("isJumping") || !animator.GetBool("isWalking") ||  value.Get<float>() == 0){
+            animator.SetBool("isDashing", false);
         }
     }
 
@@ -95,23 +95,27 @@ public class PlayerMovement : MonoBehaviour
             other.gameObject.SetActive(false);
             score++;
             Debug.Log("My score is " + score);
-            audiosource.PlayOneShot(collectSFX);
+            audioSource.PlayOneShot(collectSFX);
         }
     }
 
     void Update()
     {
-       rb.velocity = new Vector2(speed * movementVector.x, rb.velocity.y);
+        if(animator.GetBool("isDashing")){
+            rb.velocity = new Vector2(2* speed * movementVector.x, rb.velocity.y);            
+        }
+        else{
+            rb.velocity = new Vector2(speed * movementVector.x, rb.velocity.y);
+        }
 
         if(movementVector.x != 0 && !animator.GetBool("isJumping")){
             animator.SetBool("isWalking", true);            
-            if(!audiosource.isPlaying && isGrounded){
-                audiosource.PlayOneShot(moveSFX);
+            if(!audioSource.isPlaying && isGrounded && !animator.GetBool("isDashing")){
+                audioSource.PlayOneShot(moveSFX);
             }
         }
         else{
             animator.SetBool("isWalking", false); 
-            audiosource.Pause();
         }
     }
 }
