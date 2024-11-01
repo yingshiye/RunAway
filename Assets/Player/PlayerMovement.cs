@@ -8,30 +8,32 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 movementVector;
     private Rigidbody2D rb;
     private bool isGrounded = true;
+    private int jumpsFromGround = 0;
     private bool isDashing = false;
     private int score = 0;
     private SpriteRenderer sr;
-    private AudioSource audiosource;
+    private AudioSource audioSource;
     private Animator animator;
     private Transform transform_;
 
     //[SerializeField] Animator animator;
-    [SerializeField] int speed = 0;
-    [SerializeField] int jumpForce = 400;
-    [SerializeField] int dashForce = 1000; 
+    [SerializeField] int speed;
+    [SerializeField] int jumpForce;
     [SerializeField] float dashDuration = 0.1f; 
 
     private AudioClip jumpSFX;
     private AudioClip moveSFX;
     private AudioClip dashSFX;
+    private AudioClip landingSFX;
 
     private AudioClip collectSFX;
+    private bool dashHeld;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
-        audiosource = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         transform_ = GetComponent<Transform>();
 
@@ -39,15 +41,20 @@ public class PlayerMovement : MonoBehaviour
         dashSFX = Resources.Load <AudioClip> ("PlayerSFX/dash");
         jumpSFX = Resources.Load <AudioClip> ("PlayerSFX/jump");
         collectSFX = Resources.Load <AudioClip> ("PlayerSFX/collect");
+        landingSFX = Resources.Load <AudioClip> ("PlayerSFX/landing");
 
+        dashHeld = false;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("ground"))
+        if (collision.gameObject.CompareTag("ground") 
+        && transform_.position.y > collision.GetContact(0).point.y)
         {
             animator.SetBool("isJumping", false);
             isGrounded = true;
+            jumpsFromGround = 0;
+            audioSource.PlayOneShot(landingSFX, 0.5F);
         }
     }
 
@@ -63,10 +70,11 @@ public class PlayerMovement : MonoBehaviour
     {
         movementVector = value.Get<Vector2>();
 
-        if(movementVector.y > 0 && isGrounded){
+        if(movementVector.y > 0 && jumpsFromGround < 2){
+            jumpsFromGround++;
             animator.SetBool("isJumping", true);
             rb.AddForce(new Vector2(0, jumpForce));
-            audiosource.PlayOneShot(jumpSFX);
+            audioSource.PlayOneShot(jumpSFX);
         }
 
         if(movementVector.x * transform_.localScale.x < 0){
@@ -75,16 +83,16 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    void OnDash(InputValue value){
+        if(!animator.GetBool("isJumping") && animator.GetBool("isWalking") && !animator.GetBool("isDashing") && value.Get<float>() == 1){
+            animator.SetBool("isDashing", true);
+            audioSource.PlayOneShot(dashSFX);            
+        }
 
-    void OnDash(InputValue value)
-    {
-        if (!isDashing)
-        {
-            isDashing = true;
+        dashHeld = value.Get<float>() == 1;
 
-            rb.velocity = new Vector2(movementVector.x * dashForce, rb.velocity.y);
-
-            Invoke("EndDash", dashDuration);
+        if(animator.GetBool("isJumping") || !animator.GetBool("isWalking") ||  value.Get<float>() == 0){
+            animator.SetBool("isDashing", false);
         }
     }
 
@@ -95,23 +103,31 @@ public class PlayerMovement : MonoBehaviour
             other.gameObject.SetActive(false);
             score++;
             Debug.Log("My score is " + score);
-            audiosource.PlayOneShot(collectSFX);
+            audioSource.PlayOneShot(collectSFX);
         }
     }
 
     void Update()
     {
-       rb.velocity = new Vector2(speed * movementVector.x, rb.velocity.y);
+        if(animator.GetBool("isDashing")){
+            rb.velocity = new Vector2(2* speed * movementVector.x, rb.velocity.y);            
+        }
+        else{
+            rb.velocity = new Vector2(speed * movementVector.x, rb.velocity.y);
+        }
 
         if(movementVector.x != 0 && !animator.GetBool("isJumping")){
-            animator.SetBool("isWalking", true);            
-            if(!audiosource.isPlaying && isGrounded){
-                audiosource.PlayOneShot(moveSFX);
+            animator.SetBool("isWalking", true);
+            if(dashHeld && !animator.GetBool("isDashing")){
+                animator.SetBool("isDashing", true);
+                audioSource.PlayOneShot(dashSFX); 
+            }            
+            if(!audioSource.isPlaying && isGrounded && !animator.GetBool("isDashing")){
+                audioSource.PlayOneShot(moveSFX);
             }
         }
         else{
             animator.SetBool("isWalking", false); 
-            audiosource.Pause();
         }
     }
 }
