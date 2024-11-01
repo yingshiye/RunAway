@@ -9,7 +9,6 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private bool isGrounded = true;
     private int jumpsFromGround = 0;
-    private bool isDashing = false;
     private int score = 0;
     private SpriteRenderer sr;
     private AudioSource audioSource;
@@ -98,9 +97,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.CompareTag("Collectable"))
+        if(other.gameObject.CompareTag("Collectible"))
         {
-            other.gameObject.SetActive(false);
+            other.gameObject.GetComponent<Collider2D>().enabled = false;
             score++;
             Debug.Log("My score is " + score);
             audioSource.PlayOneShot(collectSFX);
