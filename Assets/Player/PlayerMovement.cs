@@ -7,8 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
     private Vector2 movementVector;
     private Rigidbody2D rb;
-    private bool isGrounded = true;
-    private int jumpsFromGround = 0;
+    [SerializeField] int jumpsFromGround;
     private int score = 0;
     private SpriteRenderer sr;
     private AudioSource audioSource;
@@ -43,6 +42,8 @@ public class PlayerMovement : MonoBehaviour
         landingSFX = Resources.Load <AudioClip> ("PlayerSFX/landing");
 
         dashHeld = false;
+
+        jumpsFromGround = 0;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -51,17 +52,8 @@ public class PlayerMovement : MonoBehaviour
         && transform_.position.y > collision.GetContact(0).point.y)
         {
             animator.SetBool("isJumping", false);
-            isGrounded = true;
             jumpsFromGround = 0;
             audioSource.PlayOneShot(landingSFX, 0.5F);
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("ground"))
-        {
-            isGrounded = false;
         }
     }
 
@@ -121,7 +113,7 @@ public class PlayerMovement : MonoBehaviour
                 animator.SetBool("isDashing", true);
                 audioSource.PlayOneShot(dashSFX); 
             }            
-            if(!audioSource.isPlaying && isGrounded && !animator.GetBool("isDashing")){
+            if(!audioSource.isPlaying && jumpsFromGround == 0 && !animator.GetBool("isDashing")){
                 audioSource.PlayOneShot(moveSFX);
             }
         }
