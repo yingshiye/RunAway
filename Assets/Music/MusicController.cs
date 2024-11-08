@@ -20,7 +20,6 @@ public class MusicController : MonoBehaviour
             _value = 0.001f;
         }
 
-        RefreshSlider(_value);
         PlayerPrefs.SetFloat("SavedMasterVolume", _value);
         masterMixer.SetFloat("MasterVolume", Mathf.Log10(_value / 100) * 20f);
     } 
