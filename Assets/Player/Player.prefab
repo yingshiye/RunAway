@@ -31,7 +31,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8542568160545844914}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.074, y: 0.118, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 0.3}
   m_ConstrainProportionsScale: 1
@@ -104,9 +104,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementVector: {x: 0, y: 0}
   jumpsFromGround: 0
-  speed: 2
-  jumpForce: 250
-  dashDuration: 0.1
+  speed: 3
+  jumpForce: 300
+  inLevel: 1
 --- !u!114 &624882258705592570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,10 +241,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 7fb141a32f3dd9b4f9525b9e05d7e5d4, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
