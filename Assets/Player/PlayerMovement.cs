@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private Vector2 movementVector;
+    [SerializeField] Vector2 movementVector;
     private Rigidbody2D rb;
     [SerializeField] int jumpsFromGround;
     private int score = 0;
@@ -100,6 +100,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(rb.velocity);
         if(animator.GetBool("isDashing")){
             rb.velocity = new Vector2(2* speed * movementVector.x, rb.velocity.y);            
         }
