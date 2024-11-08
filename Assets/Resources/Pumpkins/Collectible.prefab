@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7496517491677225562}
   - component: {fileID: 8389013399889453582}
   - component: {fileID: 3141145327738146450}
-  - component: {fileID: 6732205734515681155}
+  - component: {fileID: 6961223995935942055}
   m_Layer: 0
   m_Name: Collectible
   m_TagString: Collectible
@@ -143,7 +143,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0.03664989, y: -0.22513124}
   m_Size: {x: 0.92670506, y: 0.5916237}
   m_Direction: 1
---- !u!114 &6732205734515681155
+--- !u!114 &6961223995935942055
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
