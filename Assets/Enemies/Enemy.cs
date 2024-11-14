@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour
     protected float initialX;
     protected bool isPlayerInRange;
     [SerializeField] protected float range;
-    [SerializeField] protected float distanceFromSpawn;
+    protected float distanceFromSpawn;
     // Start is called before the first frame update
     protected void Start()
     {
