@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Vector2 movementVector;
     private Rigidbody2D rb;
     [SerializeField] int jumpsFromGround;
-    private int score = 0;
+    private int score;
     private SpriteRenderer sr;
     private AudioSource audioSource;
     private Animator animator;
@@ -50,6 +50,8 @@ public class PlayerMovement : MonoBehaviour
         warningSFX = Resources.Load <AudioClip> ("PlayerSFX/warning");
 
         cameraTransform = GameObject.Find("Main Camera").transform;
+
+        score = 0;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -104,6 +106,10 @@ public class PlayerMovement : MonoBehaviour
             score++;
             Debug.Log("My score is " + score);
             audioSource.PlayOneShot(collectSFX);
+        }
+
+        if(other.gameObject.CompareTag("Enemy")){
+            SceneManager.LoadScene("DeathScreen");
         }
     }
 
