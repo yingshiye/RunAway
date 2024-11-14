@@ -72,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
     {
         movementVector = value.Get<Vector2>();
 
-        if(movementVector.y > 0 && jumpsFromGround < 2){
+        if(movementVector.y > 0 && jumpsFromGround == 0){
             jumpsFromGround++;
             animator.SetBool("isJumping", true);
             rb.AddForce(new Vector2(0, jumpForce));
@@ -115,7 +115,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if(Mathf.Abs(transform.position.x - cameraTransform.position.x) > 7.6F){
+        if(Mathf.Abs(transform.position.x - cameraTransform.position.x) > 7.6F || transform.position.y < -5.5F){
             SceneManager.LoadScene("DeathScreen");
         }
 
