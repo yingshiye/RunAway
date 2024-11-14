@@ -2,58 +2,69 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public static PlayerMovement instance;
+
     [SerializeField] Vector2 movementVector;
     private Rigidbody2D rb;
     [SerializeField] int jumpsFromGround;
-    private int score = 0;
+    private int score;
     private SpriteRenderer sr;
     private AudioSource audioSource;
     private Animator animator;
-    private Transform transform_;
-
-    //[SerializeField] Animator animator;
     [SerializeField] int speed;
     [SerializeField] int jumpForce;
-    [SerializeField] float dashDuration = 0.1f; 
+    // [SerializeField] float dashDuration; 
 
     private AudioClip jumpSFX;
     private AudioClip moveSFX;
     private AudioClip dashSFX;
     private AudioClip landingSFX;
-
     private AudioClip collectSFX;
+    private AudioClip warningSFX;
     private bool dashHeld;
+
+    private Transform cameraTransform;
+    [SerializeField]  bool inLevel;
 
     void Start()
     {
+        instance = this;
+
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
-        transform_ = GetComponent<Transform>();
+
+        dashHeld = false;
+        jumpsFromGround = 0;
 
         moveSFX = Resources.Load <AudioClip> ("PlayerSFX/walk");
         dashSFX = Resources.Load <AudioClip> ("PlayerSFX/dash");
         jumpSFX = Resources.Load <AudioClip> ("PlayerSFX/jump");
         collectSFX = Resources.Load <AudioClip> ("PlayerSFX/collect");
         landingSFX = Resources.Load <AudioClip> ("PlayerSFX/landing");
+        warningSFX = Resources.Load <AudioClip> ("PlayerSFX/warning");
 
-        dashHeld = false;
+        cameraTransform = GameObject.Find("Main Camera").transform;
 
-        jumpsFromGround = 0;
+        score = 0;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("ground") 
-        && transform_.position.y > collision.GetContact(0).point.y)
+        && transform.position.y > collision.GetContact(0).point.y)
         {
             animator.SetBool("isJumping", false);
             jumpsFromGround = 0;
             audioSource.PlayOneShot(landingSFX, 0.5F);
+        }
+        if(collision.gameObject.CompareTag("Enemy")){
+            SceneManager.LoadScene("DeathScreen");
         }
     }
 
@@ -68,8 +79,8 @@ public class PlayerMovement : MonoBehaviour
             audioSource.PlayOneShot(jumpSFX);
         }
 
-        if(movementVector.x * transform_.localScale.x < 0){
-            transform_.localScale = new Vector3(transform_.localScale.x * -1, transform_.localScale.y, transform_.localScale.z);
+        if(movementVector.x * transform.localScale.x < 0){
+            transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
         }
 
     }
@@ -96,16 +107,27 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("My score is " + score);
             audioSource.PlayOneShot(collectSFX);
         }
+
+        if(other.gameObject.CompareTag("Enemy")){
+            SceneManager.LoadScene("DeathScreen");
+        }
     }
 
     void Update()
     {
-        Debug.Log(rb.velocity);
+        if(Mathf.Abs(transform.position.x - cameraTransform.position.x) > 7.6F){
+            SceneManager.LoadScene("DeathScreen");
+        }
+
         if(animator.GetBool("isDashing")){
             rb.velocity = new Vector2(2* speed * movementVector.x, rb.velocity.y);            
         }
         else{
             rb.velocity = new Vector2(speed * movementVector.x, rb.velocity.y);
+        }
+
+        if(inLevel){
+            rb.velocity = new Vector2(rb.velocity.x - 1, rb.velocity.y);
         }
 
         if(movementVector.x != 0 && !animator.GetBool("isJumping")){
@@ -121,5 +143,9 @@ public class PlayerMovement : MonoBehaviour
         else{
             animator.SetBool("isWalking", false); 
         }
+    }
+
+    public Vector3 GetPosition(){
+        return transform.position;
     }
 }
