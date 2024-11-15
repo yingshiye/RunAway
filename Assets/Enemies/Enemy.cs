@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected float range;
     protected float distanceFromSpawn;
     // Start is called before the first frame update
+    public static Transform MapTransform;
     protected void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -27,15 +28,20 @@ public class Enemy : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         direction = 1;
 
-        initialX = transform.position.x;
         isPlayerInRange = false;
+
+        if(MapTransform == null){
+            MapTransform = GameObject.Find("Map").transform;
+        }
+
+        initialX = transform.position.x - MapTransform.position.x;
     }
 
     protected void FixedUpdate(){
 
         PlayerPosition = PlayerMovement.instance.GetPosition();
         distanceToPlayer = PlayerPosition - transform.position;
-        distanceFromSpawn = transform.position.x - initialX;
+        distanceFromSpawn = transform.position.x - (initialX + MapTransform.position.X);
 
         if(direction * transform.localScale.x < 0){
             transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);

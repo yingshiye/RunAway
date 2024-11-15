@@ -48,13 +48,13 @@ public class ghostController : Enemy
         if(hasDisappeared){
             if(teleportInterval >= disappearanceTime){
                 PlayerPosition = PlayerMovement.instance.GetPosition();
-                if((Random.Range(0, 2) == 0 && PlayerPosition.x > teleportXRange.x) || PlayerPosition.x >= teleportXRange.y){
-                    transform.position = new Vector3(Random.Range(teleportXRange.x, Mathf.Max(PlayerPosition.x - 2, teleportXRange.x)), Random.Range(teleportYRange.x, teleportYRange.y), transform.position.z);
+                if((Random.Range(0, 2) == 0 && PlayerPosition.x > teleportXRange.x + MapTransform.position.x) || PlayerPosition.x >= teleportXRange.y){
+                    transform.position = new Vector3(Random.Range(teleportXRange.x + MapTransform.position.x, Mathf.Max(PlayerPosition.x - 2, teleportXRange.x + MapTransform.position.x)), Random.Range(teleportYRange.x, teleportYRange.y), transform.position.z);
                 }else{
-                    transform.position = new Vector3(Random.Range(Mathf.Min(PlayerPosition.x + 2, teleportXRange.y), teleportXRange.y), Random.Range(teleportYRange.x, teleportYRange.y), transform.position.z);
+                    transform.position = new Vector3(Random.Range(Mathf.Min(PlayerPosition.x + 2, teleportXRange.y + MapTransform.position.x), teleportXRange.y + MapTransform.position.x), Random.Range(teleportYRange.x, teleportYRange.y), transform.position.z);
                 }
 
-                initialX = transform.position.x;
+                initialX = transform.position.x - MapTransform.position.x;
 
                 if(distanceToPlayer.x != 0){
                     direction = distanceToPlayer.x/Mathf.Abs(distanceToPlayer.x);
