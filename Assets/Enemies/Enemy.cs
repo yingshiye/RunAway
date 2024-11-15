@@ -41,7 +41,7 @@ public class Enemy : MonoBehaviour
 
         PlayerPosition = PlayerMovement.instance.GetPosition();
         distanceToPlayer = PlayerPosition - transform.position;
-        distanceFromSpawn = transform.position.x - (initialX + MapTransform.position.X);
+        distanceFromSpawn = transform.position.x - (initialX + MapTransform.position.x);
 
         if(direction * transform.localScale.x < 0){
             transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
