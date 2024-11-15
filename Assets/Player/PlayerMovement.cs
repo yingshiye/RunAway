@@ -115,7 +115,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if(Mathf.Abs(transform.position.x - cameraTransform.position.x) > 7.6F || transform.position.y < -5.5F){
+        if(Mathf.Abs(transform.position.x - cameraTransform.position.x) > 9.1F || transform.position.y < -5.5F){
             SceneManager.LoadScene("DeathScreen");
         }
 
