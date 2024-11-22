@@ -50,19 +50,24 @@ public class GhostController : Enemy
 
                 float newX = 0;
 
-                PlayerPosition = PlayerMovement.instance.GetPosition();
+                PlayerPosition = PlayerMovement.instance.GetPosition();                
 
-                if(PlayerPosition.x < teleportXRange.x + MapTransform.position.x || teleportXRange.y + MapTransform.position.x < PlayerPosition.x){
+                float MapX = 0;
+                if(isInLevel){
+                    MapX = MapTransform.position.x;
+                }
+
+                if(PlayerPosition.x < teleportXRange.x + MapX || teleportXRange.y + MapX < PlayerPosition.x){
                     newX = Random.Range(teleportXRange.x, teleportXRange.y);
-                }else if((Random.Range(0, 2) == 0 && PlayerPosition.x > teleportXRange.x + MapTransform.position.x + 2) || PlayerPosition.x >= teleportXRange.y - 2){
-                    newX = Random.Range(teleportXRange.x + MapTransform.position.x, PlayerPosition.x - 2);
+                }else if((Random.Range(0, 2) == 0 && PlayerPosition.x > teleportXRange.x + MapX + 2) || PlayerPosition.x >= teleportXRange.y - 2){
+                    newX = Random.Range(teleportXRange.x + MapX, PlayerPosition.x - 2);
                 }else{
-                    newX = Random.Range(PlayerPosition.x + 2, teleportXRange.y + MapTransform.position.x);
+                    newX = Random.Range(PlayerPosition.x + 2, teleportXRange.y + MapX);
                 }
 
                 transform.position = new Vector3(newX, Random.Range(teleportYRange.x, teleportYRange.y), transform.position.z);
 
-                initialX = newX - MapTransform.position.x;
+                initialX = newX - MapX;
 
                 if(distanceToPlayer.x != 0){
                     direction = distanceToPlayer.x/Mathf.Abs(distanceToPlayer.x);

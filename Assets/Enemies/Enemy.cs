@@ -30,18 +30,31 @@ public class Enemy : MonoBehaviour
 
         isPlayerInRange = false;
 
-        if(MapTransform == null){
-            MapTransform = GameObject.Find("Map").transform;
-        }
+        initialX = transform.position.x;
 
-        initialX = transform.position.x - MapTransform.position.x;
+        if(MapTransform == null && isInLevel){
+            MapTransform = GameObject.Find("Map").transform;
+            initialX = transform.position.x - MapTransform.position.x;
+        }
+    }
+
+    protected void OnCollisionEnter2D (Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Enemy")){
+            Physics2D.IgnoreCollision(GetComponent<Collider2D>(), other.gameObject.GetComponent<Collider2D>());
+        }
     }
 
     protected void FixedUpdate(){
 
         PlayerPosition = PlayerMovement.instance.GetPosition();
         distanceToPlayer = PlayerPosition - transform.position;
-        distanceFromSpawn = transform.position.x - (initialX + MapTransform.position.x);
+        if(isInLevel){
+            distanceFromSpawn = transform.position.x - (initialX + MapTransform.position.x);            
+        }else{
+            distanceFromSpawn = transform.position.x - initialX;
+        }
+
 
         if(direction * transform.localScale.x < 0){
             transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
