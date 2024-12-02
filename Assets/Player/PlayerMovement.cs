@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class PlayerMovement : MonoBehaviour
 {
     public static PlayerMovement instance;
+    public static int numPumpkins;
 
     [SerializeField] Vector2 movementVector;
     private Rigidbody2D rb;
@@ -30,6 +31,11 @@ public class PlayerMovement : MonoBehaviour
     private Transform cameraTransform;
     [SerializeField]  bool inLevel;
 
+    public int getScore(){
+        return score;
+    }
+
+
     void Start()
     {
         instance = this;
@@ -52,6 +58,9 @@ public class PlayerMovement : MonoBehaviour
         cameraTransform = GameObject.Find("Main Camera").transform;
 
         score = 0;
+
+        var allCollectibles = FindObjectsByType<Collectible>(FindObjectsSortMode.None);
+        numPumpkins = (int)allCollectibles.Length;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -106,6 +115,10 @@ public class PlayerMovement : MonoBehaviour
             score++;
             Debug.Log("My score is " + score);
             audioSource.PlayOneShot(collectSFX);
+
+            if(score == numPumpkins){
+                SceneManager.LoadScene("EndScene");
+            }
         }
 
         if(other.gameObject.CompareTag("Enemy")){
