@@ -1409,6 +1409,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5541189661824147338, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
+      propertyPath: teleportXRange.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5541189661824147338, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
+      propertyPath: teleportXRange.y
+      value: 110
+      objectReference: {fileID: 0}
     - target: {fileID: 6258929134368855731, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
       propertyPath: m_Name
       value: ghost (8)
@@ -1593,6 +1601,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5541189661824147338, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
+      propertyPath: teleportXRange.x
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 5541189661824147338, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
+      propertyPath: teleportXRange.y
+      value: 55
+      objectReference: {fileID: 0}
     - target: {fileID: 6258929134368855731, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
       propertyPath: m_Name
       value: ghost (4)
@@ -1804,6 +1820,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5541189661824147338, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
+      propertyPath: teleportXRange.x
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5541189661824147338, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
+      propertyPath: teleportXRange.y
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 5541189661824147338, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
+      propertyPath: teleportYRange.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5541189661824147338, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
+      propertyPath: teleportYRange.y
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6258929134368855731, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
       propertyPath: m_Name
       value: ghost (2)
@@ -3770,6 +3802,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5541189661824147338, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
+      propertyPath: teleportXRange.x
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 5541189661824147338, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
+      propertyPath: teleportXRange.y
+      value: 70
+      objectReference: {fileID: 0}
     - target: {fileID: 6258929134368855731, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
       propertyPath: m_Name
       value: ghost (5)
@@ -3889,6 +3929,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5541189661824147338, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
+      propertyPath: teleportXRange.x
+      value: 110
+      objectReference: {fileID: 0}
+    - target: {fileID: 5541189661824147338, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
+      propertyPath: teleportXRange.y
+      value: 120
+      objectReference: {fileID: 0}
     - target: {fileID: 6258929134368855731, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
       propertyPath: m_Name
       value: ghost (9)
@@ -4138,17 +4186,33 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5541189661824147338, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
+      propertyPath: teleportXRange.x
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5541189661824147338, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
+      propertyPath: teleportXRange.y
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5541189661824147338, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
+      propertyPath: teleportYRange.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5541189661824147338, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
+      propertyPath: teleportYRange.y
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 6258929134368855731, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
       propertyPath: m_Name
       value: ghost (1)
       objectReference: {fileID: 0}
     - target: {fileID: 8640956591808378773, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 107.56813
+      value: 107.28
       objectReference: {fileID: 0}
     - target: {fileID: 8640956591808378773, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.6613207
+      value: 3.73
       objectReference: {fileID: 0}
     - target: {fileID: 8640956591808378773, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4547,6 +4611,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5541189661824147338, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
+      propertyPath: teleportXRange.x
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 5541189661824147338, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
+      propertyPath: teleportXRange.y
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 6258929134368855731, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
       propertyPath: m_Name
       value: ghost (6)
@@ -5642,6 +5714,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5541189661824147338, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
+      propertyPath: teleportXRange.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5541189661824147338, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
+      propertyPath: teleportXRange.y
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 6258929134368855731, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
       propertyPath: m_Name
       value: ghost (7)
@@ -5756,6 +5836,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5541189661824147338, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
+      propertyPath: teleportXRange.x
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5541189661824147338, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
+      propertyPath: teleportXRange.y
+      value: 36
+      objectReference: {fileID: 0}
     - target: {fileID: 6258929134368855731, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
       propertyPath: m_Name
       value: ghost (3)
