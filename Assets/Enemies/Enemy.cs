@@ -72,7 +72,7 @@ public class Enemy : MonoBehaviour
         }
 
         if(Mathf.Abs(distanceFromSpawn) > range && direction * distanceFromSpawn > 0){
-            direction = -1 * direction;
+            direction *= -1;
         }
 
         if(isInLevel){
