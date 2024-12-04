@@ -59,10 +59,10 @@ public class GhostController : Enemy
 
                 if(PlayerPosition.x < teleportXRange.x + MapX || teleportXRange.y + MapX < PlayerPosition.x){
                     newX = Random.Range(teleportXRange.x, teleportXRange.y);
-                }else if((Random.Range(0, 2) == 0 && PlayerPosition.x > teleportXRange.x + MapX + 2) || PlayerPosition.x >= teleportXRange.y - 2){
-                    newX = Random.Range(teleportXRange.x + MapX, PlayerPosition.x - 2);
+                }else if((Random.Range(0, 3) == 0 && PlayerPosition.x > teleportXRange.x + MapX + 2) || PlayerPosition.x >= teleportXRange.y - 2){
+                    newX = Random.Range(Mathf.Max(teleportXRange.x + MapX, PlayerPosition.x - 5), PlayerPosition.x - 2);
                 }else{
-                    newX = Random.Range(PlayerPosition.x + 2, teleportXRange.y + MapX);
+                    newX = Random.Range(PlayerPosition.x + 2, Mathf.Min(teleportXRange.y + MapX, PlayerPosition.x + 10));
                 }
 
                 transform.position = new Vector3(newX, Random.Range(teleportYRange.x, teleportYRange.y), transform.position.z);
@@ -75,7 +75,7 @@ public class GhostController : Enemy
 
                 animator.Play("ghostAppear");
                 Vector3 CameraPosition = GameObject.Find("Main Camera").transform.position;
-                if(Mathf.Abs(transform.position.x - CameraPosition.x) < 7.5F && Mathf.Abs(transform.position.y - CameraPosition.y) < 5){
+                if(Mathf.Abs(transform.position.x - CameraPosition.x) < 10 && Mathf.Abs(transform.position.y - CameraPosition.y) < 5){
                     audioSource.PlayOneShot(appearSFX);
                     exclamationMarkAnimator.Play("warning");
                     exclamationMarkAudioSource.Play();
