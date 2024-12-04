@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     private AudioClip warningSFX;
     private bool dashHeld;
 
+    private GameObject D;
     private Transform cameraTransform;
     [SerializeField]  bool inLevel;
 
@@ -128,6 +129,11 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+
+        if(inLevel && D == null && score < numPumpkins && transform.position.x - Enemy.MapTransform.position.x > 530){
+            D = Instantiate(Resources.Load<GameObject>("D/d"), new Vector3(15, transform.position.y, -5), Quaternion.identity) as GameObject;
+        }
+
         if(Mathf.Abs(transform.position.x - cameraTransform.position.x) > 9.1F || transform.position.y < -5.5F){
             SceneManager.LoadScene("DeathScreen");
         }
