@@ -146,7 +146,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         if(inLevel){
-            rb.velocity = new Vector2(rb.velocity.x - 1, rb.velocity.y);
+            rb.velocity = new Vector2(rb.velocity.x - MapMover.offset, rb.velocity.y);
         }
 
         if(movementVector.x != 0 && !animator.GetBool("isJumping")){

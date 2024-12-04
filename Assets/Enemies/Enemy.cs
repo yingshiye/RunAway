@@ -76,7 +76,7 @@ public class Enemy : MonoBehaviour
         }
 
         if(isInLevel){
-            rb.velocity = new Vector2(direction * speed - 1, rb.velocity.y);
+            rb.velocity = new Vector2(direction * speed - MapMover.offset, rb.velocity.y);
         }else{
             rb.velocity = new Vector2(direction * speed, rb.velocity.y);
         }
