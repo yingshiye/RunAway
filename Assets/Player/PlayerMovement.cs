@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Vector2 movementVector;
     private Rigidbody2D rb;
     [SerializeField] int jumpsFromGround;
-    private int score;
+    [SerializeField] int score;
     private SpriteRenderer sr;
     private AudioSource audioSource;
     private Animator animator;
@@ -62,6 +62,8 @@ public class PlayerMovement : MonoBehaviour
 
         var allCollectibles = FindObjectsByType<Collectible>(FindObjectsSortMode.None);
         numPumpkins = (int)allCollectibles.Length;
+
+        Debug.Log(numPumpkins);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -117,7 +119,7 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("My score is " + score);
             audioSource.PlayOneShot(collectSFX);
 
-            if(score == numPumpkins){
+            if(score >= numPumpkins){
                 SceneManager.LoadScene("EndScene");
             }
         }
