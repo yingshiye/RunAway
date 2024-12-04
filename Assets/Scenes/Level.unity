@@ -2460,6 +2460,71 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1160656432998476605, guid: f78acd23990c714449c433c093becc3d, type: 3}
   m_PrefabInstance: {fileID: 773764666}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &907958898
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5541189661824147338, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
+      propertyPath: teleportXRange.x
+      value: 450
+      objectReference: {fileID: 0}
+    - target: {fileID: 5541189661824147338, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
+      propertyPath: teleportXRange.y
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 6258929134368855731, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
+      propertyPath: m_Name
+      value: ghost (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8640956591808378773, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 520.2736
+      objectReference: {fileID: 0}
+    - target: {fileID: 8640956591808378773, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.7191274
+      objectReference: {fileID: 0}
+    - target: {fileID: 8640956591808378773, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8640956591808378773, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8640956591808378773, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8640956591808378773, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8640956591808378773, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8640956591808378773, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8640956591808378773, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8640956591808378773, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
 --- !u!1001 &910537836
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3433,11 +3498,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5541189661824147338, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
       propertyPath: teleportXRange.x
-      value: 65
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 5541189661824147338, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
       propertyPath: teleportXRange.y
-      value: 75
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 6258929134368855731, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
       propertyPath: m_Name
@@ -3555,11 +3620,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5541189661824147338, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
       propertyPath: teleportXRange.x
-      value: 110
+      value: 350
       objectReference: {fileID: 0}
     - target: {fileID: 5541189661824147338, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
       propertyPath: teleportXRange.y
-      value: 120
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 6258929134368855731, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
       propertyPath: m_Name
@@ -4917,11 +4982,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5541189661824147338, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
       propertyPath: teleportXRange.x
-      value: 90
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 5541189661824147338, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
       propertyPath: teleportXRange.y
-      value: 100
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 6258929134368855731, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
       propertyPath: m_Name
@@ -5039,11 +5104,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5541189661824147338, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
       propertyPath: teleportXRange.x
-      value: 30
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 5541189661824147338, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
       propertyPath: teleportXRange.y
-      value: 36
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 6258929134368855731, guid: 5ce3e9ef797a1c84e8d743e250d3a3c4, type: 3}
       propertyPath: m_Name
@@ -20639,5 +20704,6 @@ SceneRoots:
   - {fileID: 1435859429}
   - {fileID: 2057065912}
   - {fileID: 1498377586}
+  - {fileID: 907958898}
   - {fileID: 742505979}
   - {fileID: 543889218}

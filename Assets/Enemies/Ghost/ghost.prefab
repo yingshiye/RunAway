@@ -196,9 +196,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  isInLevel: 0
+  isInLevel: 1
   range: 2
-  distanceFromSpawn: 0
   teleportRate: 9
   disappearanceTime: 2
   teleportXRange: {x: -4, y: 9}
