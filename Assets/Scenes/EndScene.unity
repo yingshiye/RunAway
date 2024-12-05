@@ -316,7 +316,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -564567526375690616, guid: 8ac9bc5f8cadc4091bfe18dbfb971700, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 3ee0aeebfa33691418cf2e91ec737ea2, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 8452f4b2b41a08047a145903a942ebaa, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -790,8 +790,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: As you reach the real world, You reunite happily with your family as you
-    escaped the very scary monsters. You live another long 50 years and perish at
-    the nice age of 91. Sometimes, you wonder if it was really all just a nightmare
+    escaped the very scary monsters. You live another long 20 years and perish at
+    the nice age of 67. Sometimes, you wonder if it was really all just a nightmare
     and you had schizophrenia.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}

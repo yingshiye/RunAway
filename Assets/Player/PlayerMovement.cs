@@ -68,8 +68,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("ground") 
-        && transform.position.y > collision.GetContact(0).point.y)
+        if (collision.gameObject.CompareTag("ground"))
         {
             animator.SetBool("isJumping", false);
             jumpsFromGround = 0;
